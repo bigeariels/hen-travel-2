@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hen Traveling Agency | חן - סוכנות נסיעות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f7f5ff;
+    --light-purple: #ede9ff;
+    --mid-purple: #a78bfa;
+    --purple: #7c3aed;
+    --dark-purple: #4c1d95;
+    --sky: #e0f2fe;
+    --blue: #38bdf8;
+    --blue-dark: #0369a1;
+    --text: #1e1b4b;
+    --text-mid: #4c4870;
+    --text-light: #8b87b0;
+    --shadow: rgba(124, 58, 237, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    direction: rtl;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-purple);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--purple);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-logo span { color: var(--blue-dark); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--purple); }
+
+  .nav-cta {
+    background: var(--purple);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover { background: var(--dark-purple) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #f7f5ff 0%, #e0f2fe 50%, #ede9ff 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--light-purple);
+    color: var(--purple);
+    border: 1px solid var(--mid-purple);
+    border-radius: 50px;
+    padding: 0.35rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    font-weight: 800;
+  }
+
+  .hero h1 .accent { color: var(--purple); }
+
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-mid);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--purple);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+  }
+
+  .btn-primary:hover { background: var(--dark-purple); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,0.35); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--purple);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid var(--mid-purple);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { background: var(--light-purple); transform: translateY(-2px); }
+
+  /* SLIDER */
+  .slider-section {
+    padding: 5rem 1.5rem;
+    background: var(--white);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title p {
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .section-title .line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    border-radius: 2px;
+    margin: 0.75rem auto 0;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(124,58,237,0.15);
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
+  }
+
+  .slide {
+    min-width: 100%;
+    height: 420px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30,20,80,0.75) 0%, transparent 60%);
+  }
+
+  .slide-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    color: white;
+  }
+
+  .slide-content h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .slide-content p { font-size: 0.95rem; opacity: 0.85; margin-top: 0.3rem; }
+
+  .slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--light-purple);
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .dot.active { background: var(--purple); transform: scale(1.3); }
+
+  .slide-arrow {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--purple);
+    z-index: 10;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .slide-arrow:hover { background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+  .slide-arrow.prev { right: 1rem; }
+  .slide-arrow.next { left: 1rem; }
+
+  /* DESTINATIONS */
+  .destinations {
+    padding: 5rem 1.5rem;
+    background: var(--off-white);
+  }
+
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .dest-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .dest-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(124,58,237,0.2); }
+
+  .dest-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .dest-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--purple);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .dest-body {
+    padding: 1.25rem;
+  }
+
+  .dest-body h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--text);
+  }
+
+  .dest-body p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  .dest-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--light-purple);
+  }
+
+  .dest-price {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--purple);
+  }
+
+  .dest-btn {
+    background: var(--light-purple);
+    color: var(--purple);
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .dest-btn:hover { background: var(--purple); color: white; }
+
+  /* ABOUT */
+  .about {
+    padding: 5rem 1.5rem;
+    background: white;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-inner {
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    .about { text-align: center; }
+  }
+
+  .about-visual {
+    background: linear-gradient(135deg, var(--light-purple), var(--sky));
+    border-radius: 20px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-visual::before {
+    content: '✈';
+    font-size: 8rem;
+    opacity: 0.08;
+    position: absolute;
+    top: -10px; left: -10px;
+    transform: rotate(-20deg);
+  }
+
+  .about-emoji { font-size: 3.5rem; }
+
+  .about-stat {
+    background: white;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(124,58,237,0.12);
+    text-align: center;
+  }
+
+  .about-stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--purple);
+    font-weight: 800;
+  }
+
+  .about-stat span { font-size: 0.8rem; color: var(--text-light); }
+
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .about-text p {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 5rem 1.5rem;
+    background: var(--off-white);
+  }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .test-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 20px var(--shadow);
+    position: relative;
+  }
+
+  .test-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--light-purple);
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    line-height: 1;
+  }
+
+  .stars {
+    color: #f59e0b;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .test-card p {
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+  }
+
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .test-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mid-purple), var(--blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .test-info strong { display: block; font-size: 0.9rem; color: var(--text); }
+  .test-info span { font-size: 0.8rem; color: var(--text-light); }
+
+  /* CONTACT */
+  .contact {
+    padding: 5rem 1.5rem;
+    background: white;
+  }
+
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-card {
+    background: var(--off-white);
+    border: 1px solid var(--light-purple);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .contact-card:hover { border-color: var(--mid-purple); transform: translateY(-3px); box-shadow: 0 8px 25px var(--shadow); }
+
+  .contact-icon {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-card strong {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .contact-card span {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✈ Hen <span>Traveling</span></div>
+  <ul class="nav-links">
+    <li><a href="#destinations">יעדים</a></li>
+    <li><a href="#about">אודות</a></li>
+    <li><a href="#testimonials">המלצות</a></li>
+    <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ הסוכנות שתיקח אותך לכל מקום בעולם</div>
+  <h1>חוויות שלא<br><span class="accent">תשכח לעולם</span></h1>
+  <p>חן מדמון — סוכנת נסיעות אישית שתמצא לך את החבילה המושלמת, בדיוק לפי מה שאתה מחפש</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">📞 לפרטים והזמנות</a>
+    <a href="#destinations" class="btn-secondary">🌍 גלה יעדים</a>
+  </div>
+</section>
+
+<!-- SLIDER -->
+<section class="slider-section fade-in">
+  <div class="section-title">
+    <h2>יעדים מרהיבים</h2>
+    <p>כמה מהמקומות הקסומים שנוכל לקחת אותך אליהם</p>
+    <div class="line"></div>
+  </div>
+  <div class="slider-wrapper">
+    <div class="slides" id="slides">
+
+      <div class="slide">
+        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=900&q=80');"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h3>רומא, איטליה</h3>
+          <p>עיר נצחית עם היסטוריה, אוכל ואהבה בכל פינה</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80');"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h3>באלי, אינדונזיה</h3>
+          <p>גן עדן טרופי עם מקדשים, ג'ונגלים וחופים מדהימים</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80');"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h3>אלפי שוויץ</h3>
+          <p>נוף עוצר נשימה, שלג, רוגע ואדרנלין גבוה</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80');"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h3>דובאי, איחוד האמירויות</h3>
+          <p>יוקרה בלתי מתפשרת, קניות, גורדי שחקים ומדבר</p>
+        </div>
+      </div>
+
+    </div>
+    <button class="slide-arrow prev" onclick="moveSlide(-1)">&#8250;</button>
+    <button class="slide-arrow next" onclick="moveSlide(1)">&#8249;</button>
+  </div>
+  <div class="slide-dots" id="dots">
+    <button class="dot active" onclick="goToSlide(0)"></button>
+    <button class="dot" onclick="goToSlide(1)"></button>
+    <button class="dot" onclick="goToSlide(2)"></button>
+    <button class="dot" onclick="goToSlide(3)"></button>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations fade-in" id="destinations">
+  <div class="section-title">
+    <h2>יעדים פופולריים</h2>
+    <p>הבחירות האהובות של הלקוחות שלנו</p>
+    <div class="line"></div>
+  </div>
+
+  <div class="dest-grid">
+    <div class="dest-card">
+      <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1549693578-d683be217e58?w=500&q=80');">
+        <span class="dest-tag">🔥 הכי מבוקש</span>
+      </div>
+      <div class="dest-body">
+        <h3>🌴 מלדיביים</h3>
+        <p>וילות על המים, שנורקל עם צבי ים ושקיעות שלא נגמרות</p>
+        <div class="dest-footer">
+          <span class="dest-price">פרטים בפנייה</span>
+          <a href="https://wa.me/972502358993" class="dest-btn">הזמן עכשיו</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=500&q=80');">
+        <span class="dest-tag">✨ חדש</span>
+      </div>
+      <div class="dest-body">
+        <h3>🗼 פריז, צרפת</h3>
+        <p>עיר האור, האהבה, האופנה והקולינריה העולמית</p>
+        <div class="dest-footer">
+          <span class="dest-price">פרטים בפנייה</span>
+          <a href="https://wa.me/972502358993" class="dest-btn">הזמן עכשיו</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80');">
+        <span class="dest-tag">💜 מומלץ</span>
+      </div>
+      <div class="dest-body">
+        <h3>🌸 תאילנד</h3>
+        <p>חופים טורקיז, מקדשים, אוכל רחוב ולילות בנגקוק</p>
+        <div class="dest-footer">
+          <span class="dest-price">פרטים בפנייה</span>
+          <a href="https://wa.me/972502358993" class="dest-btn">הזמן עכשיו</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=500&q=80');">
+        <span class="dest-tag">🌟 פופולרי</span>
+      </div>
+      <div class="dest-body">
+        <h3>🗽 ניו יורק, ארה״ב</h3>
+        <p>העיר שלא ישנה — ברודוויי, סנטרל פארק ושמיים גבוהים</p>
+        <div class="dest-footer">
+          <span class="dest-price">פרטים בפנייה</span>
+          <a href="https://wa.me/972502358993" class="dest-btn">הזמן עכשיו</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1538682932302-3dc76d7d873e?w=500&q=80');">
+        <span class="dest-tag">🐘 אקזוטי</span>
+      </div>
+      <div class="dest-body">
+        <h3>🦁 ספארי אפריקה</h3>
+        <p>חוויה של פעם בחיים — קניה, טנזניה ופארקי הטבע</p>
+        <div class="dest-footer">
+          <span class="dest-price">פרטים בפנייה</span>
+          <a href="https://wa.me/972502358993" class="dest-btn">הזמן עכשיו</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=500&q=80');">
+        <span class="dest-tag">🇬🇷 קלאסי</span>
+      </div>
+      <div class="dest-body">
+        <h3>🏛️ יוון</h3>
+        <p>סנטוריני, מיקונוס, אתונה — כחול ולבן בלי סוף</p>
+        <div class="dest-footer">
+          <span class="dest-price">פרטים בפנייה</span>
+          <a href="https://wa.me/972502358993" class="dest-btn">הזמן עכשיו</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about fade-in" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-emoji">✈️</div>
+      <div class="about-stat">
+        <strong>500+</strong>
+        <span>לקוחות מרוצים</span>
+      </div>
+      <div class="about-stat">
+        <strong>50+</strong>
+        <span>יעדים ברחבי העולם</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <h2>קצת עלינו</h2>
+      <p>שלום! אני חן מדמון, סוכנת נסיעות עם תשוקה אמיתית לטיולים ולחוויות בלתי נשכחות. אני כאן כדי להפוך את חלום הטיול שלך למציאות.</p>
+      <p>אני מתמחה בבניית חבילות נסיעה מותאמות אישית — בין אם מדובר בחופשה רומנטית, טיול משפחתי, הרפתקה סולו או טיול קבוצתי. כל לקוח מקבל יחס אישי, מחירים תחרותיים, ועיסקה שמותאמת בדיוק לצרכים שלו.</p>
+      <p>✅ מחירים הכי טובים שיש<br>✅ זמינות גבוהה ומענה מהיר<br>✅ ניסיון עם מגוון יעדים ותקציבים</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials fade-in" id="testimonials">
+  <div class="section-title">
+    <h2>מה אומרים עלינו</h2>
+    <p>לקוחות שכבר טסו איתנו ואהבו</p>
+    <div class="line"></div>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>חן אהובה שלנו תודה על סגירת חופשה מדהימה. תודה על ההובלה, על הסבלנות, ההדרכה והליווי הצמוד עד שלב ההמראה. אין כמוך!</p>
+      <div class="test-author">
+        <div class="test-avatar">אה</div>
+        <div class="test-info">
+          <strong>איילת והודיה</strong>
+          <span>לקוחות מרוצות ✈️</span>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>תודה חיים שלי על הכל. אין ספק שרק אצלך הטיסה הבאה!</p>
+      <div class="test-author">
+        <div class="test-avatar">מו</div>
+        <div class="test-info">
+          <strong>מורן</strong>
+          <span>לקוחה מרוצה 💕</span>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>חן תודה רבה על הכל. היה טיול יפה מאוד. ארגנת לנו הכל והכל היה מושלם.</p>
+      <div class="test-author">
+        <div class="test-avatar">הד</div>
+        <div class="test-info">
+          <strong>הדר</strong>
+          <span>לקוחה מרוצה ❤️</span>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>אין עליך אלופה!!!!</p>
+      <div class="test-author">
+        <div class="test-avatar">אד</div>
+        <div class="test-info">
+          <strong>אדיר</strong>
+          <span>לקוח מרוצה 🏆</span>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>את מהממת. תודה רבה!</p>
+      <div class="test-author">
+        <div class="test-avatar">מי</div>
+        <div class="test-info">
+          <strong>מיכאל</strong>
+          <span>לקוח מרוצה ❤️</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact fade-in" id="contact">
+  <div class="contact-inner">
+    <div class="section-title">
+      <h2>צור קשר</h2>
+      <p>אנחנו כאן בשבילך — שלח הודעה ונחזור אליך בהקדם</p>
+      <div class="line"></div>
+    </div>
+
+    <div class="contact-cards">
+      <a href="https://wa.me/972502358993" class="contact-card" target="_blank">
+        <div class="contact-icon">💬</div>
+        <strong>וואטסאפ</strong>
+        <span>050-235-8993</span>
+        <span style="font-size:0.78rem; color: var(--purple); font-weight:600;">לחץ לשיחה ישירה</span>
+      </a>
+
+      <a href="tel:0502358993" class="contact-card">
+        <div class="contact-icon">📞</div>
+        <strong>טלפון</strong>
+        <span>050-235-8993</span>
+        <span style="font-size:0.78rem; color: var(--purple); font-weight:600;">זמינה לשיחות</span>
+      </a>
+
+      <a href="https://did.li/cgQCN" class="contact-card" target="_blank">
+        <div class="contact-icon">📣</div>
+        <strong>קבוצת וואטסאפ</strong>
+        <span>דילים בלעדיים</span>
+        <span style="font-size:0.78rem; color: var(--purple); font-weight:600;">הצטרף עכשיו</span>
+      </a>
+
+      <a href="https://did.li/Dmzrl" class="contact-card" target="_blank">
+        <div class="contact-icon">👍</div>
+        <strong>פייסבוק</strong>
+        <span>HM Trips</span>
+        <span style="font-size:0.78rem; color: var(--purple); font-weight:600;">עקוב בפייסבוק</span>
+      </a>
+    </div>
+
+    <div style="text-align:center; background: linear-gradient(135deg, var(--light-purple), var(--sky)); border-radius: 16px; padding: 2rem; margin-top:1rem;">
+      <p style="font-size:1.1rem; font-weight:600; color: var(--dark-purple); margin-bottom:0.5rem;">🎯 רוצה לשמוע על דילים לפני כולם?</p>
+      <p style="color: var(--text-mid); font-size:0.95rem; margin-bottom:1.25rem;">הצטרף לקבוצת הוואטסאפ שלנו וקבל הצעות בלעדיות ישירות לטלפון</p>
+      <a href="https://did.li/cgQCN" target="_blank" class="btn-primary" style="display:inline-block;">📲 הצטרף לקבוצה</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">✈ Hen Traveling Agency</div>
+  <p>חן מדמון | 050-235-8993</p>
+  <p style="margin-top:0.5rem; font-size:0.78rem; opacity:0.5;">© 2025 Hen Traveling Agency. כל הזכויות שמורות.</p>
+</footer>
+
+<script>
+let current = 0;
+const total = 4;
+
+function moveSlide(dir) {
+  current = (current + dir + total) % total;
+  updateSlider();
+}
+
+function goToSlide(i) {
+  current = i;
+  updateSlider();
+}
+
+function updateSlider() {
+  document.getElementById('slides').style.transform = `translateX(${current * 100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === current));
+}
+
+setInterval(() => moveSlide(-1), 4500);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
